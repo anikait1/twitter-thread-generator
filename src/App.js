@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Header from "./Header";
 
 function App() {
   const [text, setText] = useState("");
@@ -31,19 +32,25 @@ function App() {
   }, [text]);
 
   return (
-    <div>
-      <h4>{tweets.reduce((currLen, tweet) => currLen + tweet.length, 0)}</h4>
-      <textarea
-        value={text}
-        onChange={(event) => setText(event.currentTarget.value)}
-      />
-      <button onClick={() => setText((t) => t + "[...]")}>Split</button>
-      <ol>
-        {tweets.map((tweet) => (
-          <li>{`${tweet.length}: ${tweet}`}</li>
-        ))}
-      </ol>
-    </div>
+    <>
+      <Header />
+      <div>
+        <h4 style={{textAlign: "center"}}>Total length: {tweets.reduce((currLen, tweet) => currLen + tweet.length, 0)}</h4>
+        <div style={{display: "flex", alignItems: "center", justifyContent: "center"}}>
+        <textarea  
+          value={text}
+          onChange={(event) => setText(event.currentTarget.value)}
+        />
+        <button onClick={() => setText((t) => t + "[...]")}>Split</button>
+        </div>
+        
+        <ol>
+          {tweets.map((tweet) => (
+            <li>{`${tweet.length}: ${tweet}`}</li>
+          ))}
+        </ol>
+      </div>
+    </>
   );
 }
 
