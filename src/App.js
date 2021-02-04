@@ -16,7 +16,8 @@ function App() {
     let tweet = "";
 
     text
-      .replaceAll("[...]", " [...] ")
+      .split("[...]")
+      .join(" [...] ")
       .split(" ")
       .filter((word) => word !== "")
       .forEach((word) => {
